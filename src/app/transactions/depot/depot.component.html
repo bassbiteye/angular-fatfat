@@ -1,0 +1,55 @@
+        <!-- profile -->
+        <div id="profile" class="tab-pane">
+          <section class="panel">
+            <div class="bio-graph-heading">
+                <h1>pannau de recharge Compte</h1>
+            </div>
+            <div class="panel-body bio-graph-info">
+              <h1>Numéro du compte a recharger</h1>
+              <div class="panel-body">
+                <form class="form-inline"  >
+                  <div class="form-group">
+                    <label class="" for="exampleInputEmail2">Numero compte</label>
+            
+                    <input type="number" class="form-control"  #numCompte="ngModel" placeholder="Enterle numero de compte" [(ngModel)]="CompteData.numCompte" pattern="^\d{10}$" name="numCompte" (keyup)="findCompte($event)">
+                    <div class="validation-error text-danger" *ngIf="numCompte.invalid && numCompte.touched">Renseigner numero  il doit etre 10  chiffres.</div>
+
+                  </div>
+                </form>
+
+              </div>
+              <div class="row" *ngIf="Compte">
+
+                <div class="bio-row">
+                  <p><Strong>Raison Social</Strong>:<em> {{Compte.partenaire.raisonSocial}}  </em></p>
+                </div>
+                <div class="bio-row">
+                  <p><Strong>NINEA </Strong>:<em> {{Compte.partenaire.ninea}}  </em></p>
+                </div>
+                <div class="bio-row">
+                  <p><Strong>adresse </Strong>:<em> {{Compte.partenaire.adresse}}  </em></p>
+                </div>
+                <div class="bio-row">
+                  <p><Strong>Numéro de compte </Strong>:<em> {{Compte.numCompte}}  </em></p>
+                </div>
+                <div class="bio-row">
+                  <p><Strong>solde </Strong>: <em> {{Compte.solde}} FCFA </em></p>
+                </div> 
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="row">
+            </div>
+          </section>
+        </div>
+        <form class="form-inline"  *ngIf="Compte" >
+            <div class="bio-row">
+            <label class="" for="exampleInputEmail2">Montant a deposé</label>
+            <p>   </p>
+            <input type="number" class="form-control" #solde="ngModel" min="75000" placeholder="Enter le numero de compte" [(ngModel)]="CompteData.solde"  name="solde">
+            <div class="validation-error text-danger" *ngIf="solde.invalid && solde.touched">Renseigner numero  il doit etre 10  chiffres.</div>
+
+            <button class="btn btn-warning btn-lg"  title="Bootstrap 3 themes generator" (click)="depot()">deposer</button>
+          </div>
+        </form>

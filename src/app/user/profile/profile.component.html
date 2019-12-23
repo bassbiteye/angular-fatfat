@@ -1,0 +1,124 @@
+
+<div class="container">
+	<div class="row profile" >
+		<div class="col-lg-6">
+			<div
+				class="profile-sidebar">
+				<div class="profile-userpic">
+					<img src="assets/img/{{profile.imageName}}" class="img-responsive" alt="">
+				</div>
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+              <span>prenom: </span>  {{ profile.prenom }}
+					</div>
+					<div class="profile-usertitle-name">
+              <span>nom: </span>   {{ profile.nom }}
+					</div>
+					<div class="profile-usertitle-name">
+              <span>login: </span>    {{ profile.username }}
+					</div>
+					<div class="profile-usertitle-job">
+              <span>telephone: </span>    {{ profile.telephone }}
+					</div>
+				</div>
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">edit</button>
+					<button type="button" class="btn btn-danger btn-sm">Deconnexion</button>
+				</div>
+			</div>
+		</div>
+  </div>
+
+
+
+              <div class="col-lg-6">
+                <mat-card-title>
+                    uitilisateur
+              </mat-card-title>
+              <mat-card-content>
+                  <form #form="ngForm" (submit)="registerUser(form)" autocomplete="off" class="example-form">
+                      <table style="width: 500px">
+                          <tr>
+                              <td>
+                                  <mat-form-field class="demo-full-width">
+
+                                      <input matInput placeholder="nom" name="nom" #nom="ngModel" [(ngModel)]="registerUserData.nom" class="form-control" required>
+                                      <div class="validation-error text-danger" *ngIf="nom.invalid && nom.touched">je veux savoir votre nom.</div>
+                              </mat-form-field>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="2">
+                                  <mat-form-field class="demo-full-width">
+
+                                      <input matInput placeholder="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="registerUserData.prenom" class="form-control" required>
+                                      <div class="validation-error text-danger" *ngIf="prenom.invalid && prenom.touched">je veux savoir votre prenom aussi.</div>
+                                </mat-form-field>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="2">
+                                  <mat-form-field class="demo-full-width">
+
+                                      <input matInput placeholder="login" name="username" #username="ngModel" [(ngModel)]="registerUserData.username" class="form-control" required>
+                                      <div class="validation-error text-danger" *ngIf="username.invalid && username.touched">Creer un Login.</div>
+                               </mat-form-field>
+                              </td>
+                          </tr>
+
+
+                          <tr>
+                              <td colspan="2">
+                                  <mat-form-field class="demo-full-width">
+                                      <input matInput type="password" placeholder="password" name="password" #password="ngModel" [(ngModel)]="registerUserData.password" class="form-control" required>
+                                      <div class="validation-error text-danger" *ngIf="password.invalid && password.touched">Creer un password.</div>
+                                 </mat-form-field>
+                              </td>
+                          </tr>
+                          <tr>
+                                  <td colspan="2">
+                                      <mat-form-field class="demo-full-width">
+                                          <input matInput placeholder="telephone" name="telephone" #telephone="ngModel" [(ngModel)]="registerUserData.telephone" class="form-control" pattern="^\d{9}$" required>
+                                          <div class="validation-error text-danger" *ngIf="telephone.invalid && telephone.touched">Renseigner numero  il doit etre 9 chiffres.</div>
+                                   </mat-form-field>
+                                  </td>
+                              </tr>
+
+                          <tr>
+
+                              <td colspan="2">
+                                  <div>
+                                          <label>role</label>
+                                      <select [(ngModel)]="registerUserData.name" name="name">
+                                          <option *ngFor="let prof of listeProfile"   [value]="prof.name">{{prof.name}}</option>
+                                          </select>
+                                      </div>
+                              </td>
+                          </tr>
+                          <tr>
+                                  <td colspan="2">
+                                      <div>
+                                          <img hidden src="imageUrl"   style="width:200px;height:100px" class="form-control" />
+
+                                          <input type="file"   class="col-lg-4 control-label" #Image accept="image/*" (change)="handleFileInput($event.target.files)" class="form-control"   name="imageName" required>
+                                          <div class="validation-error text-danger" *ngIf="Image.invalid && Image.touched">Choisir une Image.</div>
+                                      </div>
+                                  </td>
+                              </tr>
+                          <tr>
+                              <td colspan="2" class="content-center">
+                              </td>
+                          </tr>
+
+                      </table>
+                      <button style="margin-left: 250px" [disabled]="form.invalid" class="btn btn-success">Enregistrer</button>
+                  </form>
+
+              </mat-card-content>
+              </div>
+          </div>
+
+
+
+
+

@@ -1,0 +1,56 @@
+
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-3 col-sm-offset-8">
+                      <mat-form-field class="col-10">
+                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche">
+                      </mat-form-field>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+          
+                  <!-- nom -->
+                  <ng-container matColumnDef="numCompte">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> numero Compte </th>
+                      <td mat-cell *matCellDef="let row"> {{row.compte.numCompte}} </td>
+                  </ng-container>
+          
+                  <!-- prenom -->
+                  <ng-container matColumnDef="solde">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> solde </th>
+                      <td mat-cell *matCellDef="let row"> {{row.compte.solde}} </td>
+                  </ng-container>
+          
+            
+                  <!-- telephone -->
+                  <ng-container matColumnDef="montantdepose">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> montant depose </th>
+                      <td mat-cell *matCellDef="let row"> {{row.montantdepose}} </td>
+                  </ng-container>
+                  <!-- prenom -->
+                  <ng-container matColumnDef="monatantAvantDepot">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> monatant Avant Depot </th>
+                      <td mat-cell *matCellDef="let row"> {{row.monatantAvantDepot}} </td>
+                  </ng-container>
+          
+            
+                  <!-- telephone -->
+                  <ng-container matColumnDef="DateDepot">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date depot </th>
+                      <td mat-cell *matCellDef="let row"> {{row.DateDepot}} </td>
+                  </ng-container>
+
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                  </tr>
+          
+              </table>
+          
+              <mat-paginator [pageSizeOptions]="[10, 15, 25, 100]"></mat-paginator>
+          </div>
+               
+     

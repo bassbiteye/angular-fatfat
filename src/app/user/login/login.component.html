@@ -1,0 +1,36 @@
+  <section class="login-block" *ngIf="!valuRole">
+      <div class="container">
+    <div class="row">
+      <div class="col login-sec">
+          <h2 class="text-center">Authentification</h2>
+          <form  method="POST" #formLogin="ngForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="text-uppercase" >login</label>
+      <input type="text" class="form-control"  placeholder="Username" [(ngModel)]="loginUserData.username" name="username" >
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginUserData.password" name="password">
+    </div>
+
+
+      <div class="form-check">
+          <div class="form-group" *ngIf="message">
+
+              <div  class="alert alert-block alert-danger fade in" >
+                <button data-dismiss="alert" class="close close-sm"  type="button">
+                                    <i class="icon-remove"></i>
+                                </button>
+                <strong></strong> {{message}}
+              </div>
+              </div>
+      <button type="submit" class="btn btn-login" (click)="loginUser()">login</button>
+    </div>
+
+  </form>
+    </div>
+      </div>
+      </div>
+  </section>
+

@@ -1,0 +1,30 @@
+
+  <div class="container ">
+      <div class="col-lg-4">
+
+        <h3 class="mb-3 text-center">affecter compte</h3>
+
+        <div class="form-group">
+          <input [disabled]='true' type="text" [(ngModel)]="userData.nom" class="form-control" placeholder="Name">
+        </div>
+
+        <div class="form-group">
+          <input [disabled]='true' type="text" [(ngModel)]="userData.prenom" class="form-control" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+          <input [disabled]='true' type="text" [(ngModel)]="userData.telephone" class="form-control" placeholder="telephone">
+        </div>
+        <div class="form-group">
+            <label for="compte">compte</label>
+                <select class="form-control" [(ngModel)]="userData.numCompte" name="numCompte" >
+                    <option *ngFor="let list of listeCompte"   [value]="list.numCompte" >{{list.numCompte}}</option>
+                   </select>
+
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success btn-lg btn-block" [disabled]="form.invalid" (click)="affecter()">affecter</button>
+        </div>
+
+      </div>
+    </div>

@@ -1,0 +1,117 @@
+
+<header class="header dark-bg" *ngIf="nom">
+  <div class="toggle-nav">
+    <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+  </div>
+
+  <!--logo start-->
+  <a routerLink="/acceuil" routerLinkActive="active" class="logo"><span class="profile-ava">
+    <img src="assets/img/logo.jpeg "alt="logo"  style="width: 60px">
+</span>
+<strong>fatt fatt  <span class="lite">transfert</span></strong>
+</a>
+  <!--logo end-->
+
+  <div class="nav search-row" id="top_menu">
+    <!--  search form start -->
+
+    <!--  search form end -->
+  </div>
+  <div class="top-nav notification-row">
+    <!-- notificatoin dropdown start-->
+    <ul class="nav pull-right top-menu">
+      <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="profile-ava">
+                            <img alt=""  style="width: 50px" src="assets/img/{{imageName}} ">
+                        </span>
+                        <span class="username" *ngIf="nom,prenom" >{{prenom}} {{nom}}</span>
+                        <a  class="btn btn-danger" (click)="_auth.deconnect()"><i class=""></i> Deconnexion</a>
+                    </a>
+      </li>
+      <!-- user login dropdown end -->
+    </ul>
+    <!-- notificatoin dropdown end-->
+  </div>
+</header>
+
+<!--sidebar start-->
+<aside *ngIf="nom">
+    <div id="sidebar" class="nav-collapse ">
+      <!-- sidebar menu start-->
+      <ul class="sidebar-menu">
+        <li class="">
+          <a class="nav-link" routerLink="/accueil" routerLinkActive="active">
+            <i class="icon_house_alt"></i>
+            <span>acceuil</span>
+        </a>
+        </li>
+        <li class="sub-menu" *ngIf="role ==='ROLE_SUPER'">
+          <a href="javascript:;" class="">
+                        <i class="fa">&#xf2b5;</i>
+                        <span>partenaire</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+          <ul class="sub">
+            <li *ngIf="role ==='ROLE_SUPER'"><a class="nav-link fa" *ngIf="!_superService" routerLink="/super" routerLinkActive="active">&#xf0c9; liste</a></li>
+            <li *ngIf="role ==='ROLE_SUPER'"><a class="nav-link fa" *ngIf="!_superService" routerLink="/addPar" routerLinkActive="active"> &#xf067;Add</a></li>
+            <li *ngIf="role ==='ROLE_SUPER'"><a class="nav-link fa" *ngIf="!_trans" routerLink="/addCompte" routerLinkActive="active">&#xf067; Add Compte</a></li>
+
+          </ul>
+        </li>
+        <li class="sub-menu" *ngIf="role ==='ROLE_SUPER' || role ==='ROLE_ADMIN'">
+          <a href="javascript:;" class="">
+                        <i class="fa">&#xf2be;</i>
+                        <span>user</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+          <ul class="sub">
+              <li *ngIf="role ==='ROLE_SUPER' || role ==='ROLE_ADMIN'"><a class="nav-link fa" *ngIf="!_authService" routerLink="/register" routerLinkActive="active"> &#xf067; add</a></li>
+              <li *ngIf="role ==='ROLE_ADMIN'"><a class="nav-link fa" *ngIf="!_authService" routerLink="/users" routerLinkActive="active">&#xf0c9; liste</a></li>
+              <li *ngIf="role ==='ROLE_SUPER'"><a class="nav-link fa" *ngIf="!_authService" routerLink="/usersys" routerLinkActive="active">&#xf0c9; liste</a></li>
+
+          </ul>
+        </li>
+        <li   class="sub-menu icon icon-search" *ngIf="role ==='ROLE_USERS' || role ==='ROLE_ADMIN'">
+          <a href="javascript:;" class="">
+      <i style="font-size:24px" class="fa">&#xf021;</i>
+                        <span>Transaction</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+          <ul class="sub">
+              <li><a class="nav-link fa" *ngIf="!_trans" routerLink="/envoi" routerLinkActive="active">&#xf064;Envoi</a></li>
+              <li><a class="nav-link fa" *ngIf="!_trans" routerLink="/retrait" routerLinkActive="active">&#xf112;Retrait</a></li>
+
+          </ul>
+        </li>
+        <li class="sub-menu" *ngIf="role ==='ROLE_CAISSIER'">
+            <a href="javascript:;"class="">
+                          <i class="	fa fa-history"></i>
+                          <span>Recharge</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+                <li *ngIf=" role ==='ROLE_CAISSIER'"><a class="nav-link fa" *ngIf="!_trans" routerLink="/depot" routerLinkActive="active">&#xf021; Recharge</a></li>
+                <li *ngIf=" role ==='ROLE_CAISSIER'"><a class="nav-link fa"*ngIf="!_trans" routerLink="/historique" routerLinkActive="active">&#xf0c9; historique</a></li>
+
+            </ul>
+          </li>
+
+            <li class="sub-menu" *ngIf="role ==='ROLE_USERS' || role ==='ROLE_ADMIN'">
+                <a href="javascript:;" class="">
+                    <i class="	fa fa-history"></i>
+                    <span>detail transaction</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+              <ul class="sub">
+                <li *ngIf="role ==='ROLE_USERS'||role ==='ROLE_ADMIN'"><a class="nav-link fa" *ngIf="!_detail" routerLink="/detail" routerLinkActive="active">&#xf0c9; detail user</a></li>
+                <li *ngIf="role ==='ROLE_ADMIN'"><a class="nav-link fa"*ngIf="!_detailP" routerLink="/detailP" routerLinkActive="active">&#xf0c9; detail partenaire</a></li>
+
+              </ul>
+            </li>
+
+      </ul>
+      <!-- sidebar menu end-->
+    </div>
+  </aside>
+  <!--sidebar end-->

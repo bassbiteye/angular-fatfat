@@ -1,0 +1,71 @@
+<form class="form-inline" role="form"  [formGroup]="form" novalidate>
+    <div class="form-group">
+      <label class="" for="">date debut</label>
+      <input formControlName="dateFrom" type="date" useValueAsDate>
+    </div>
+    <div class="form-group">
+      <label >date fin</label>
+      <input formControlName="dateTo" type="date" useValueAsDate >
+    </div>
+    <div class="form-group">
+    <button  class="btn btn-primary" type="submit" (click)="inSubmit()">retrait</button>
+  <button  class="btn btn-primary" type="submit" (click)="onSubmit()">envoi</button>
+</div>
+  </form>
+
+          <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-8">
+                    <mat-form-field class="col-10">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- raisonSociale Column -->
+                <ng-container matColumnDef="montantTransaction">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> montant </th>
+                    <td mat-cell *matCellDef="let row"> {{row.montantTransaction}} </td>
+                </ng-container>
+
+                <!-- ninea Column -->
+                <ng-container matColumnDef="dateEnvoi">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> date Envoi </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dateEnvoi  | date}} </td>
+                </ng-container>
+
+
+                <!-- adresse Column -->
+                <ng-container matColumnDef="tarif">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> tarif </th>
+                    <td mat-cell *matCellDef="let row"> {{row.tarifs.frais}} fcfa </td>
+                </ng-container>
+                 <!-- commission Column -->
+                 <ng-container matColumnDef="commission">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> commission </th>
+                  <td mat-cell *matCellDef="let row"> {{row.comEnvoie || row.comRetrait }} fcfa </td>
+              </ng-container>
+                <!-- Modifier Column -->
+                <ng-container matColumnDef="beneficiaire">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> beneficiaire</th>
+                    <td mat-cell *matCellDef="let row" >{{row.beneficiaire.prenomb}} {{row.beneficiaire.nomb}} </td>
+                </ng-container>
+
+                <!-- Modifier Column -->
+                <ng-container matColumnDef="expediteur">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> expediteur</th>
+                  <td mat-cell *matCellDef="let row" >{{row.expediteur.prenomE}} {{row.beneficiaire.nomE}}  </td>
+              </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 15, 25, 100]"></mat-paginator>
+        </div>
